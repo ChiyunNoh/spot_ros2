@@ -1,5 +1,4 @@
 # This is an example configuration file for Spot.  It is not used!
-
 /**:
   ros__parameters:
     # Spot Login Information
@@ -10,8 +9,8 @@
     # Status Updates from Spot
     metrics_rate: 0.04
     lease_rate: 1.0
-    async_tasks_rate: 10.0
-    robot_state_rate: 50.0  # Rate in Hz at which you receive joint state, TF, status updates, etc from state publisher node
+    async_tasks_rate: 20.0
+    robot_state_rate: 150.0  # Rate in Hz at which you receive joint state, TF, status updates, etc from state publisher node
     image_rate: 15.0  # Rate in Hz at which you receive images from the image publisher node. Hard to get faster than 15 Hz from Spot.
 
     # Some boolean parameters

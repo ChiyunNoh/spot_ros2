@@ -85,7 +85,8 @@ spot_msgs::msg::WiFiState getWifiState(const ::bosdyn::api::RobotState& robot_st
  * @param robot_state Robot state message from Spot.
  * @return A FootStateArray containing the foot state info from the robot state message.
  */
-spot_msgs::msg::FootStateArray getFootState(const ::bosdyn::api::RobotState& robot_state);
+spot_msgs::msg::FootStateArray getFootState(const ::bosdyn::api::RobotState& robot_state,
+                                               const google::protobuf::Duration& clock_skew);
 
 /**
  * @brief Create an EStopStateArray ROS message by parsing a RobotState message.

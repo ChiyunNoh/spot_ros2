@@ -72,9 +72,10 @@ spot_msgs::msg::WiFiState getWifiState(const ::bosdyn::api::RobotState& robot_st
   return wifi_state;
 }
 
-spot_msgs::msg::FootStateArray getFootState(const ::bosdyn::api::RobotState& robot_state) {
+spot_msgs::msg::FootStateArray getFootState(const ::bosdyn::api::RobotState& robot_state,
+                                            const google::protobuf::Duration& clock_skew) {
   spot_msgs::msg::FootStateArray foot_states;
-
+  foot_states.header.stamp = robotTimeToLocalTime(robot_state.kinematic_state().acquisition_timestamp(), clock_skew);
   for (const auto& foot : robot_state.foot_state()) {
     spot_msgs::msg::FootState foot_state;
     convertToRos(foot.foot_position_rt_body(), foot_state.foot_position_rt_body);

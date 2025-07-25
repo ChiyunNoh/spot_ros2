@@ -94,8 +94,10 @@ TEST(RobotStateConversions, TestGetFootState) {
   setFootState(robot_state.add_foot_state(), 7.0, 8.0, 9.0, ::bosdyn::api::FootState::CONTACT_MADE);
   setFootState(robot_state.add_foot_state(), 10.0, 11.0, 12.0, ::bosdyn::api::FootState::CONTACT_LOST);
 
+  google::protobuf::Duration clock_skew;
+  clock_skew.set_seconds(1);
   // WHEN we create a FootStateArray ROS message from the RobotState
-  const auto out = getFootState(robot_state);
+  const auto out = getFootState(robot_state, clock_skew);
 
   // THEN the output message contains four foot states
   ASSERT_THAT(out.states, SizeIs(4));
@@ -120,10 +122,12 @@ TEST(RobotStateConversions, TestGetFootState) {
 
 TEST(RobotStateConversions, TestGetFootStateNoFootStates) {
   // GIVEN a RobotState that does not contain foot states
+  
   ::bosdyn::api::RobotState robot_state;
-
+  google::protobuf::Duration clock_skew;
+  clock_skew.set_seconds(1);
   // WHEN we create a FootStateArray ROS message from the RobotState
-  const auto out = getFootState(robot_state);
+  const auto out = getFootState(robot_state, clock_skew);
 
   // THEN the output message contains an empty array
   ASSERT_THAT(out.states, IsEmpty());

@@ -59,7 +59,7 @@ void StatePublisher::timerCallback() {
   const auto robot_state_messages =
       RobotStateMessages{getBatteryStates(robot_state, clock_skew),
                          getWifiState(robot_state),
-                         getFootState(robot_state),
+                         getFootState(robot_state, clock_skew),
                          getEstopStates(robot_state, clock_skew),
                          getJointStates(robot_state, clock_skew, frame_prefix_),
                          getTf(robot_state, clock_skew, frame_prefix_, full_tf_root_id_),
